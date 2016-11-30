@@ -11,7 +11,6 @@ import com.katenos.entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
-import static java.util.logging.Level.SEVERE;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -52,10 +51,7 @@ public class Authentication extends HttpServlet {
                 out.println(new JSONObject().put("success", true).toString());
             } else {
                 out.println(new JSONObject().put("success", false).toString());
-            }
-            Logger log = Logger.getLogger(com.katenos.servlets.Authentication.class.getName());
-            log.log(SEVERE, "trowble bubbl1111e");            
-            log.info("trowble bubble");
+            }            
         } catch (Exception e) {
             Logger log = Logger.getLogger(Authentication.class.getName());
             log.info(e.getMessage());
