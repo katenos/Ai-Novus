@@ -37,21 +37,19 @@ public class Database implements DAO {
 
     public void checkDB() {
         this.loadDriver();
-        this.getConnection();
+        this.connectDb();
     }
 
-    public boolean loadDriver() {
+    public void loadDriver() {
         try {
             Class.forName("org.hsqldb.jdbcDriver");
         } catch (ClassNotFoundException e) {
             System.out.println("Драйвер не найден");
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+            e.printStackTrace();            
+        }        
     }
 
-    public boolean getConnection() {
+    public void connectDb() {
         try {
             String path = "mypath/";
             String dbname = "testDB";
@@ -62,10 +60,8 @@ public class Database implements DAO {
             statement = connection.createStatement();
         } catch (SQLException ex) {
             System.out.println("Соединение не создано");
-            ex.printStackTrace();
-            return false;
-        }
-        return true;
+            ex.printStackTrace();            
+        }        
     }
 
     public void createTable() {
