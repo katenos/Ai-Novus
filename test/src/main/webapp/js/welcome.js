@@ -25,7 +25,7 @@ function getTimesOfDay() {
     if (date.getHours() >= 18 && date.getHours() < 22) {
         return "Добрый вечер,";
     }
-    if (date.getHours() >= 22 && date.getHours() < 6) {
+    if ((date.getHours() >= 22 && date.getHours() <= 23)||(date.getHours() >= 0 && date.getHours() < 6)) {
         return "Добрая ночь,";
     }
 }

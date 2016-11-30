@@ -13,8 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import static java.util.logging.Level.SEVERE;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -22,8 +21,7 @@ import java.util.logging.Logger;
  */
 public class Database implements DAO {
 
-    private Statement statement = null;
-    private Logger logger = Logger.global;
+    private Statement statement = null;    
 
     public void createConnection() {
         checkDB();
@@ -60,12 +58,10 @@ public class Database implements DAO {
             String login = "katenos";
             String password = "Qwerty1";
             Connection connection = DriverManager.getConnection(connectionString, login, password);
-            statement = connection.createStatement();
-            createTable();
+            statement = connection.createStatement();            
         } catch (SQLException ex) {
             System.out.println("Соединение не создано");
-            ex.printStackTrace();
-            logger.log(SEVERE, ex.getMessage(), ex);
+            ex.printStackTrace();            
             return false;
         }
         return true;
@@ -77,8 +73,7 @@ public class Database implements DAO {
             statement.executeUpdate(sql);
         } catch (Exception e) {
             System.out.println("Таблица не создана");
-            e.printStackTrace();
-            logger.log(SEVERE, e.getMessage(), e);
+            e.printStackTrace();            
         }
     }
 
@@ -91,8 +86,7 @@ public class Database implements DAO {
             sql = "INSERT INTO testTable (username, password) VALUES ('maruska','klop123')";
             statement.executeUpdate(sql);
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.log(SEVERE, e.getMessage(), e);
+            e.printStackTrace();            
         }
     }
 
@@ -101,8 +95,7 @@ public class Database implements DAO {
             String sql = "SHUTDOWN";
             statement.execute(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
-            logger.log(SEVERE, e.getMessage(), e);
+            e.printStackTrace();            
         }
     }
 
@@ -130,8 +123,7 @@ public class Database implements DAO {
             this.closeConnection();
             return users;
         } catch (SQLException e) {
-            this.closeConnection();
-            logger.log(SEVERE, e.getMessage(), e);
+            this.closeConnection();            
             throw new DAOException(e.getMessage());
         }
     }
@@ -144,8 +136,7 @@ public class Database implements DAO {
             statement.executeUpdate(sql);
             this.closeConnection();
         } catch (SQLException e) {
-            this.closeConnection();
-            logger.log(SEVERE, e.getMessage(), e);
+            this.closeConnection();            
             throw new DAOException(e.getMessage());
         }
     }
@@ -165,8 +156,7 @@ public class Database implements DAO {
             this.closeConnection();
             return user;
         } catch (SQLException e) {
-            this.closeConnection();
-            logger.log(SEVERE, e.getMessage(), e);
+            this.closeConnection();            
             throw new DAOException(e.getMessage());
         }
     }
