@@ -27,8 +27,7 @@ public class Database implements DAO {
     public void createConnection() {
         checkDB();
         try {
-            //если таблицы нет, то создать
-            createTable();
+            //если таблицы нет, то создать            
             statement.executeQuery("SELECT id, user, password FROM testTable");
         } catch (Exception e) {
             createTable();
