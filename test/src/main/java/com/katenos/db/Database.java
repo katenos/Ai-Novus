@@ -6,6 +6,7 @@ package com.katenos.db;
  * and open the template in the editor.
  */
 import com.katenos.entity.User;
+import com.katenos.servlets.Authentication;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,12 +22,13 @@ import java.util.List;
  */
 public class Database implements DAO {
 
-    private Statement statement = null;    
+    private Statement statement = null;
 
     public void createConnection() {
         checkDB();
         try {
             //если таблицы нет, то создать
+            createTable();
             statement.executeQuery("SELECT id, user, password FROM testTable");
         } catch (Exception e) {
             createTable();
@@ -58,10 +60,10 @@ public class Database implements DAO {
             String login = "katenos";
             String password = "Qwerty1";
             Connection connection = DriverManager.getConnection(connectionString, login, password);
-            statement = connection.createStatement();            
+            statement = connection.createStatement();
         } catch (SQLException ex) {
             System.out.println("Соединение не создано");
-            ex.printStackTrace();            
+            ex.printStackTrace();
             return false;
         }
         return true;
@@ -72,8 +74,8 @@ public class Database implements DAO {
             String sql = "CREATE TABLE testTable (id IDENTITY , username VARCHAR(20), password VARCHAR(20))";
             statement.executeUpdate(sql);
         } catch (Exception e) {
-            System.out.println("Таблица не создана");
-            e.printStackTrace();            
+            System.out.println("Таблица не создана");            
+            e.printStackTrace();
         }
     }
 
@@ -86,7 +88,7 @@ public class Database implements DAO {
             sql = "INSERT INTO testTable (username, password) VALUES ('maruska','klop123')";
             statement.executeUpdate(sql);
         } catch (Exception e) {
-            e.printStackTrace();            
+            e.printStackTrace();
         }
     }
 
@@ -95,7 +97,7 @@ public class Database implements DAO {
             String sql = "SHUTDOWN";
             statement.execute(sql);
         } catch (SQLException e) {
-            e.printStackTrace();            
+            e.printStackTrace();
         }
     }
 
@@ -123,7 +125,7 @@ public class Database implements DAO {
             this.closeConnection();
             return users;
         } catch (SQLException e) {
-            this.closeConnection();            
+            this.closeConnection();
             throw new DAOException(e.getMessage());
         }
     }
@@ -136,7 +138,7 @@ public class Database implements DAO {
             statement.executeUpdate(sql);
             this.closeConnection();
         } catch (SQLException e) {
-            this.closeConnection();            
+            this.closeConnection();
             throw new DAOException(e.getMessage());
         }
     }
@@ -156,7 +158,7 @@ public class Database implements DAO {
             this.closeConnection();
             return user;
         } catch (SQLException e) {
-            this.closeConnection();            
+            this.closeConnection();
             throw new DAOException(e.getMessage());
         }
     }

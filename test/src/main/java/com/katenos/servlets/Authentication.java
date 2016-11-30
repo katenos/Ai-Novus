@@ -26,7 +26,7 @@ import org.json.JSONObject;
  */
 public class Authentication extends HttpServlet {
 
-    /**
+        /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -38,7 +38,7 @@ public class Authentication extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, JSONException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();     
+        HttpSession session = request.getSession();
         String username = request.getParameter("username").toLowerCase().trim();
         String password = request.getParameter("password");
         PrintWriter out = response.getWriter();
@@ -51,11 +51,9 @@ public class Authentication extends HttpServlet {
                 out.println(new JSONObject().put("success", true).toString());
             } else {
                 out.println(new JSONObject().put("success", false).toString());
-            }            
+            }
         } catch (Exception e) {
-            Logger log = Logger.getLogger(Authentication.class.getName());
-            log.info(e.getMessage());
-            System.out.println("Exception is ;" + e);
+            System.out.println("Exception is ;" + e);            
         }
     }
 
