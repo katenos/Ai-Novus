@@ -23,11 +23,11 @@
             </tr>
             <tr>
                 <th align="left">Пароль</th>
-                <th><input id="password" type="text"></th>                                      
+                <th><input id="password" type="password"></th>                                      
             </tr>
             <tr>
                 <th align="left">Повтор пароля</th>
-                <th><input id="password_doubling" type="text"></th>                                      
+                <th><input id="password_doubling" type="password"></th>                                      
             </tr>
             <tr>
                 <th></th>

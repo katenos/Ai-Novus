@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <th align="left">Пароль</th>
-                <th><input id="password" type="text"></th>                                      
+                <th><input id="password" type="password"></th>                                      
             </tr>
             <tr>
                 <th></th>
